@@ -21,255 +21,7 @@
     if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
   } catch (e) {}
 </script>
-<style>
-  /* Material Icons, subset to the glyphs this page uses (Apache License 2.0). */
-  @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    font-display: block;
-    src: url('fonts/material-icons-subset.woff2') format('woff2');
-  }
-
-  /* Palette: the same values as the OMN-Go light and dark themes. */
-  :root {
-    --omn-bg: #f9f9f9;
-    --omn-bg-surface: #ffffff;
-    --omn-bg-band: #e8e8e8;
-    --omn-text: #333333;
-    --omn-text-heading: #222222;
-    --omn-text-muted: #555555;
-    --omn-border: #d6d6d6;
-    --omn-accent: #0056b3;
-    --omn-accent-hover: #004494;
-    --omn-notes-bg: #0056b3;
-    --omn-bookmarks-bg: #138496;
-    --omn-btn-text: #ffffff;
-    --omn-success: #1e7e34;
-    --omn-shadow: rgba(0, 0, 0, 0.1);
-    --omn-hero-bg: linear-gradient(160deg, #2a2d2f 0%, #1b1d1e 100%);
-    --omn-hero-text: #eef3f8;
-    --omn-hero-muted: #b8bec4;
-    --omn-green: #7ccf3a;
-  }
-  :root[data-theme="dark"] {
-    --omn-bg: #1b1d1e;
-    --omn-bg-surface: #25282a;
-    --omn-bg-band: #2a2d2f;
-    --omn-text: #d4d4d4;
-    --omn-text-heading: #e8eaed;
-    --omn-text-muted: #9aa0a6;
-    --omn-border: #45494d;
-    --omn-accent: #4d9fff;
-    --omn-accent-hover: #6cb0ff;
-    --omn-notes-bg: #1c5ea8;
-    --omn-bookmarks-bg: #14707e;
-    --omn-btn-text: #eef3f8;
-    --omn-success: #3fb950;
-    --omn-shadow: rgba(0, 0, 0, 0.4);
-    --omn-hero-bg: linear-gradient(160deg, #25282a 0%, #121314 100%);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --omn-bg: #1b1d1e;
-      --omn-bg-surface: #25282a;
-      --omn-bg-band: #2a2d2f;
-      --omn-text: #d4d4d4;
-      --omn-text-heading: #e8eaed;
-      --omn-text-muted: #9aa0a6;
-      --omn-border: #45494d;
-      --omn-accent: #4d9fff;
-      --omn-accent-hover: #6cb0ff;
-      --omn-notes-bg: #1c5ea8;
-      --omn-bookmarks-bg: #14707e;
-      --omn-btn-text: #eef3f8;
-      --omn-success: #3fb950;
-      --omn-shadow: rgba(0, 0, 0, 0.4);
-      --omn-hero-bg: linear-gradient(160deg, #25282a 0%, #121314 100%);
-    }
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    background: var(--omn-bg);
-    color: var(--omn-text);
-  }
-  a { color: var(--omn-accent); }
-  a:hover { color: var(--omn-accent-hover); }
-  h1, h2, h3 { color: var(--omn-text-heading); line-height: 1.25; }
-  h2 { font-size: 1.75rem; margin: 0 0 0.4rem; }
-  h3 { font-size: 1.1rem; margin: 0 0 0.3rem; }
-  code {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 0.9em;
-    background: var(--omn-bg-band);
-    padding: 0.1em 0.35em;
-    border-radius: 4px;
-  }
-  .omn-icon {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: 'liga';
-  }
-  .omn-wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
-  .omn-section { padding: 4rem 0; }
-  .omn-section-alt { background: var(--omn-bg-band); }
-  .omn-lead { color: var(--omn-text-muted); margin: 0 0 2rem; max-width: 46rem; }
-
-  /* Top bar */
-  .omn-topbar {
-    position: sticky; top: 0; z-index: 10;
-    background: #2a2d2f;
-    color: #eef3f8;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  }
-  .omn-topbar .omn-wrap { display: flex; align-items: center; gap: 1rem; height: 3.5rem; }
-  .omn-brand { display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none; font-weight: 700; font-size: 1.15rem; }
-  .omn-brand img { width: 32px; height: 32px; }
-  .omn-nav { display: flex; gap: 1.1rem; margin-left: auto; align-items: center; }
-  .omn-nav a { color: #c4c7cb; text-decoration: none; font-size: 0.95rem; }
-  .omn-nav a:hover { color: #ffffff; }
-  .omn-theme-btn {
-    background: transparent; color: #c4c7cb;
-    border: 1px solid #45494d; border-radius: 6px;
-    width: 2.2rem; height: 2.2rem; cursor: pointer; padding: 0;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .omn-theme-btn .omn-icon { font-size: 20px; }
-  .omn-theme-btn:hover { color: #ffffff; border-color: #6c7075; }
-  @media (max-width: 720px) { .omn-nav a.omn-nav-opt { display: none; } }
-
-  /* Hero */
-  .omn-hero { background: var(--omn-hero-bg); color: var(--omn-hero-text); padding: 4.5rem 0 4rem; }
-  .omn-hero .omn-wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3rem; align-items: center; }
-  .omn-hero-logo { width: 96px; height: 96px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45)); }
-  .omn-hero h1 { color: #ffffff; font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0.75rem 0 0; letter-spacing: -0.01em; }
-  .omn-hero-sub { color: var(--omn-green); font-weight: 700; font-size: 1.25rem; margin: 0.2rem 0 1.2rem; }
-  .omn-hero p.omn-hero-text { color: var(--omn-hero-muted); font-size: 1.15rem; margin: 0 0 2rem; max-width: 34rem; }
-  .omn-hero-shot { justify-self: center; }
-  .omn-hero-shot .omn-phone { width: 270px; max-width: 100%; }
-  @media (max-width: 820px) {
-    .omn-hero .omn-wrap { grid-template-columns: 1fr; }
-    .omn-hero-shot { display: none; }
-  }
-
-  /* Download buttons: the same look as the start buttons of the OMN-Go Welcome page */
-  .omn-get { display: flex; flex-wrap: wrap; gap: 1rem; }
-  .omn-get-btn {
-    display: flex; align-items: center; gap: 0.9rem;
-    padding: 0.85rem 1.3rem 0.85rem 1rem;
-    border-radius: 10px;
-    color: var(--omn-btn-text);
-    text-decoration: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    flex: 1 1 15rem; max-width: 20rem;
-    transition: transform 0.12s ease, filter 0.12s ease;
-  }
-  .omn-get-btn:hover { color: var(--omn-btn-text); transform: translateY(-2px); filter: brightness(1.1); }
-  .omn-get-btn .omn-icon { font-size: 30px; }
-  .omn-get-label { display: block; font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
-  .omn-get-hint { display: block; font-size: 0.85rem; opacity: 0.85; }
-  .omn-get-fdroid { background: var(--omn-notes-bg); }
-  .omn-get-github { background: var(--omn-bookmarks-bg); }
-  .omn-noplay { margin: 1.25rem 0 0; font-size: 0.9rem; color: var(--omn-hero-muted); max-width: 34rem; }
-
-  /* Phone frames */
-  .omn-phone {
-    display: block;
-    border-radius: 22px;
-    border: 6px solid #0e0f10;
-    background: #0e0f10;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-    overflow: hidden;
-  }
-  .omn-phone img { display: block; width: 100%; height: auto; }
-
-  /* Screenshots strip */
-  .omn-shots {
-    display: flex; gap: 1.5rem;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 0.5rem 0.25rem 1.5rem;
-  }
-  .omn-shots figure { margin: 0; flex: 0 0 210px; scroll-snap-align: start; }
-  .omn-shots figcaption { text-align: center; font-size: 0.9rem; color: var(--omn-text-muted); margin-top: 0.6rem; }
-
-  /* Feature cards */
-  .omn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
-  .omn-card {
-    background: var(--omn-bg-surface);
-    border: 1px solid var(--omn-border);
-    border-radius: 10px;
-    padding: 1.2rem 1.25rem;
-    box-shadow: 0 2px 4px var(--omn-shadow);
-  }
-  .omn-card p { margin: 0; color: var(--omn-text-muted); font-size: 0.97rem; }
-  .omn-card .omn-icon {
-    color: var(--omn-accent);
-    background: color-mix(in srgb, var(--omn-accent) 14%, transparent);
-    border-radius: 8px; padding: 6px; margin-bottom: 0.6rem;
-  }
-
-  /* Platforms */
-  .omn-platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  @media (max-width: 720px) { .omn-platforms { grid-template-columns: 1fr; } }
-  .omn-platforms .omn-card h3 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; }
-  .omn-platforms .omn-card h3 .omn-icon { margin: 0; padding: 4px; }
-  .omn-platforms ul { margin: 0.6rem 0 0; padding-left: 1.2rem; color: var(--omn-text-muted); }
-  .omn-platforms li { margin: 0.25rem 0; }
-  .omn-tag {
-    display: inline-block; font-size: 0.75rem; font-weight: 700;
-    padding: 0.05rem 0.5rem; border-radius: 1rem;
-    border: 1px solid var(--omn-border); color: var(--omn-text-muted);
-    vertical-align: middle;
-  }
-
-  /* Privacy band */
-  .omn-pledge { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-  .omn-pledge div { display: flex; gap: 0.6rem; align-items: flex-start; }
-  .omn-pledge .omn-icon { color: var(--omn-success); }
-  .omn-pledge strong { color: var(--omn-text-heading); display: block; }
-  .omn-pledge span.omn-pledge-text { color: var(--omn-text-muted); font-size: 0.95rem; }
-  .omn-disclaimer {
-    margin-top: 2rem; padding: 1rem 1.25rem;
-    border-left: 4px solid #d39e00;
-    background: var(--omn-bg-surface);
-    border-radius: 0 8px 8px 0;
-    font-size: 0.95rem; color: var(--omn-text-muted);
-  }
-  .omn-disclaimer strong { color: var(--omn-text-heading); }
-
-  /* OMN classic */
-  .omn-classic { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
-  .omn-classic img { width: 72px; height: 72px; filter: grayscale(0.6); opacity: 0.85; }
-  .omn-classic p { margin: 0 0 0.8rem; }
-  .omn-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.4rem; }
-  .omn-link-btn {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    padding: 0.4rem 0.85rem;
-    border: 1px solid var(--omn-border); border-radius: 8px;
-    background: var(--omn-bg-surface);
-    text-decoration: none; font-size: 0.95rem;
-  }
-  .omn-link-btn .omn-icon { font-size: 18px; }
-  .omn-link-btn:hover { border-color: var(--omn-accent); }
-
-  /* Footer */
-  .omn-footer { background: #2a2d2f; color: #9aa0a6; padding: 2rem 0; font-size: 0.9rem; }
-  .omn-footer a { color: #c4c7cb; }
-  .omn-footer .omn-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
-  .omn-footer p { margin: 0.2rem 0; }
-</style>
+<link rel="stylesheet" href="css/omn-home.css">
 </head>
 <body>
 
@@ -280,6 +32,7 @@
       <a class="omn-nav-opt" href="#screenshots">Screenshots</a>
       <a class="omn-nav-opt" href="#features">Features</a>
       <a class="omn-nav-opt" href="#platforms">Platforms</a>
+      <a href="pages/">Pages</a>
       <a class="omn-nav-opt" href="#omn">OMN</a>
       <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
       <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
@@ -365,7 +118,7 @@
         <ul>
           <li>Android 6.0 (API 23) and newer.</li>
           <li>Needs an Android System WebView of Chromium 85 or newer. On an old device, update the WebView and Chrome first.</li>
-          <li>Notes are in <code>Android/media/net.basov.omngo/</code>. No storage permission is necessary, and a backup is easy.</li>
+          <li>Notes are in <code>Android/media/net.basov.omngo/</code> (F-Droid build: <code>net.basov.omngo.fdroid</code>). No storage permission is necessary, and a backup is easy.</li>
           <li>Builds for <code>arm64-v8a</code>, <code>armeabi-v7a</code>, <code>x86</code> and <code>x86_64</code>.</li>
         </ul>
       </div>
@@ -400,7 +153,19 @@
   </div>
 </section>
 
-<section class="omn-section" id="omn">
+<section class="omn-section" id="pages">
+  <div class="omn-wrap">
+    <h2>Page library</h2>
+    <p class="omn-lead">Ready-made pages for OMN-Go. A page is one Markdown file with its own HTML and script. Download it and add it to your notes.</p>
+    <div class="omn-teaser">
+      <a class="omn-card" href="pages/#color-schemes"><span class="omn-icon" aria-hidden="true">&#xe40a;</span><h3>Color schemes</h3><p>Make, examine and apply color schemes and fonts. Includes the Pastel Amber Hercules scheme.</p></a>
+      <a class="omn-card" href="pages/#legacy-adapter"><span class="omn-icon" aria-hidden="true">&#xe889;</span><h3>Adapter for old pages</h3><p>Keeps the colors and styles of pages made for OMN-Go 26.11.9 or older.</p></a>
+      <a class="omn-card" href="pages/install.html"><span class="omn-icon" aria-hidden="true">&#xe89c;</span><h3>How to add a page</h3><p>Three ways to add a page, on Android and on the desktop, and how to update it.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section omn-section-alt" id="omn">
   <div class="omn-wrap">
     <h2>OMN, the original app</h2>
     <div class="omn-classic">
@@ -419,7 +184,7 @@
   </div>
 </section>
 
-<section class="omn-section omn-section-alt" id="community">
+<section class="omn-section" id="community">
   <div class="omn-wrap">
     <h2>News and help</h2>
     <p class="omn-lead">The app has a built-in User Manual. Read it first: it describes as much as possible.</p>
@@ -447,34 +212,6 @@
   </div>
 </footer>
 
-<script>
-  /* Theme button: system -> light -> dark -> system, as in the app. */
-  (function () {
-    var btn = document.getElementById('omn-theme-btn');
-    var order = ['system', 'light', 'dark'];
-    var glyph = { system: '\ue1ab', light: '\ue518', dark: '\ue51c' };
-    function current() {
-      return document.documentElement.getAttribute('data-theme') || 'system';
-    }
-    function show(mode) {
-      btn.title = 'Theme: ' + mode;
-      btn.setAttribute('aria-label', 'Theme: ' + mode + '. Press to change.');
-      btn.firstChild.textContent = glyph[mode];
-    }
-    function apply(mode) {
-      if (mode === 'system') document.documentElement.removeAttribute('data-theme');
-      else document.documentElement.setAttribute('data-theme', mode);
-      try {
-        if (mode === 'system') localStorage.removeItem('omn-home-theme');
-        else localStorage.setItem('omn-home-theme', mode);
-      } catch (e) {}
-      show(mode);
-    }
-    btn.addEventListener('click', function () {
-      apply(order[(order.indexOf(current()) + 1) % order.length]);
-    });
-    show(current());
-  })();
-</script>
+<script src="js/omn-home.js"></script>
 </body>
 </html>

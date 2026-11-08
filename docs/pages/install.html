@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add a page to OMN-Go</title>
+<meta name="description" content="How to add a page from the OMN-Go page library to OMN-Go on Android and on the desktop, and how to update it.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2a2d2f">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="apple-touch-icon" href="../img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Add a page to OMN-Go">
+<meta property="og:description" content="Add a page from the page library to OMN-Go on Android and on the desktop.">
+<meta property="og:url" content="https://mvbasov.github.io/OMNHome/pages/install.html">
+<meta property="og:image" content="https://mvbasov.github.io/OMNHome/img/og-image.png">
+<script>
+  /* Apply the saved theme before the first paint. */
+  try {
+    var t = localStorage.getItem('omn-home-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="../css/omn-home.css">
+</head>
+<body>
+
+<header class="omn-topbar">
+  <div class="omn-wrap">
+    <a class="omn-brand" href="../"><img src="../img/icon-192.png" alt="" width="32" height="32">OMN-Go</a>
+    <nav class="omn-nav" aria-label="Sections">
+      <a class="omn-nav-opt" href="../#features">Features</a>
+      <a href="./">Pages</a>
+      <a class="omn-nav-opt omn-nav-on" href="install.html">How to add</a>
+      <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
+      <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="omn-pagehead">
+  <div class="omn-wrap">
+    <div class="omn-crumbs"><a href="../">Home</a> / <a href="./">Page library</a> / How to add</div>
+    <h1>Add a page to OMN-Go</h1>
+    <p>A page is one Markdown file (<code>.md</code>). There are three ways to add it, on Android and on the desktop.
+      Each way works with each page of the library.</p>
+  </div>
+</section>
+
+<section class="omn-section" id="android">
+  <div class="omn-wrap">
+    <h2><span class="omn-icon" aria-hidden="true" style="color:var(--omn-accent)">&#xe859;</span> Android</h2>
+    <div class="omn-ways">
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe156;</span>Open the file in OMN-Go <span class="omn-best">easiest</span></h3>
+        <p>OMN-Go receives the file as a note from another person.</p>
+        <ol class="omn-steps">
+          <li>In the <a href="./">page library</a>, press <strong>Download</strong>. The browser saves the file in <em>Downloads</em>.</li>
+          <li>Open the file: press the download notification, or open the file in a file manager.</li>
+          <li>In the list of applications, select <strong>OMN-Go</strong>. If OMN-Go is not in the list, press <strong>Share</strong> and select OMN-Go there.</li>
+          <li>OMN-Go saves the page below <code>incoming/</code> and opens it. The <strong>Incoming notes</strong> page also gets a link to it.</li>
+        </ol>
+      </div>
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Paste the text into a new page</h3>
+        <p>You select the name and the place of the page.</p>
+        <ol class="omn-steps">
+          <li>In the <a href="./">page library</a>, press <strong>Copy text</strong>.</li>
+          <li>In OMN-Go, press the page title to show the header buttons, then press <span class="omn-icon" aria-hidden="true">&#xe89c;</span> <strong>New page</strong>.</li>
+          <li>Enter a name, for example <code>ColorSchemes</code>, and confirm it. The new page opens in the editor.</li>
+          <li>Select all the text in the editor, and paste. The text of the library page replaces the header block that OMN-Go made.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe161;</span> <strong>Save</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe2c7;</span>Put the file into the notes directory</h3>
+        <p>For a file manager that can write to the media directory of an application.</p>
+        <ol class="omn-steps">
+          <li>Download the file.</li>
+          <li>Move it into the <code>md/</code> directory of OMN-Go:<br>
+            <code>/storage/emulated/0/Android/media/net.basov.omngo/md/</code><br>
+            For the F-Droid build, the directory is <code>…/Android/media/net.basov.omngo.fdroid/md/</code>.</li>
+          <li>Add a link to the page in a note, for example <code>[Color schemes](/ColorSchemes)</code> on your Welcome page. Press the link. OMN-Go compiles the page the first time you open it.</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="omn-section omn-section-alt" id="desktop">
+  <div class="omn-wrap">
+    <h2><span class="omn-icon" aria-hidden="true" style="color:var(--omn-accent)">&#xe30a;</span> Desktop</h2>
+    <div class="omn-ways">
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe9fc;</span>Receive the file <span class="omn-best">easiest</span></h3>
+        <p>OMN-Go receives the file as a note from another person.</p>
+        <ol class="omn-steps">
+          <li>In the <a href="./">page library</a>, press <strong>Download</strong>. The browser saves the file in your download directory.</li>
+          <li>In OMN-Go, open the <strong>Incoming notes</strong> page. The Welcome page has a link to it. With the default port, its address is
+            <code>http://localhost:8080/incoming/incoming</code>.</li>
+          <li>Press <strong>Receive a note</strong>. Select the file, or drop it on the box.</li>
+          <li>Press <strong>Import</strong>. OMN-Go saves the page below <code>incoming/</code> and puts a link to it at the top of the list.</li>
+        </ol>
+      </div>
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Paste the text into a new page</h3>
+        <p>The same as on Android: press <strong>Copy text</strong> in the library,
+          press <span class="omn-icon" aria-hidden="true" style="font-size:18px;vertical-align:-3px">&#xe89c;</span> in OMN-Go, enter a name,
+          select all the text in the editor, paste, and save.
+          With an external editor, paste into the file that it opens.</p>
+      </div>
+
+      <div class="omn-card omn-way">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe2c7;</span>Put the file into the notes directory</h3>
+        <p>Save or copy the file into <code>data/md/</code>, next to the OMN-Go executable.
+          Then add a link to the page in a note, for example <code>[Color schemes](/ColorSchemes)</code>,
+          or open <code>http://localhost:8080/ColorSchemes</code>.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="omn-section" id="after">
+  <div class="omn-wrap">
+    <h2>After you add a page</h2>
+    <div class="omn-grid" style="grid-template-columns:repeat(auto-fit, minmax(280px, 1fr))">
+      <div class="omn-card">
+        <span class="omn-icon" aria-hidden="true">&#xe88e;</span>
+        <h3>Read "How this page works"</h3>
+        <p>Each page of the library starts with this panel. It tells what the page does, which files it writes,
+          and what each button does. The version of the page is at the right of the panel title.</p>
+      </div>
+      <div class="omn-card">
+        <span class="omn-icon" aria-hidden="true">&#xe923;</span>
+        <h3>Update a page</h3>
+        <p>A received note never writes over a note: a second import makes a second page, for example <code>ColorSchemes-2</code>.
+          To update, open the page you have, press <strong>Edit</strong>, replace all the text with the new text, and save.
+          Or replace the file in <code>md/</code>. The data of the page stays in its own files.</p>
+      </div>
+      <div class="omn-card">
+        <span class="omn-icon" aria-hidden="true">&#xe627;</span>
+        <h3>Other devices</h3>
+        <p>A page is a normal note. Git sync sends it to your other devices, and the data files of the page go with it.
+          You can also send the page from OMN-Go with <strong>Send this note</strong> in the metadata panel.</p>
+      </div>
+    </div>
+
+    <div class="omn-callout omn-callout-warn">
+      <span class="omn-icon" aria-hidden="true">&#xe002;</span>
+      <div>
+        <p><strong>A page script has full rights.</strong> It can change or delete each note and each file of OMN-Go.
+          Add only a page that you trust. To save a file, a page needs the admin. On your own device you are always the admin.
+          From another device on your network, log in with the admin password first.</p>
+      </div>
+    </div>
+
+    <div class="omn-actions" style="margin-top:1.6rem">
+      <a class="omn-btn omn-btn-primary" href="./"><span class="omn-icon" aria-hidden="true">&#xe02f;</span>Go to the page library</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="omn-footer">
+  <div class="omn-wrap">
+    <div>
+      <p>OMN-Go and OMN by Mikhail Basov. <a href="https://github.com/mvbasov/OMN-Go/blob/master/LICENSE">MIT License</a>.</p>
+      <p>AI coding assistants did much of the development work. A human reviewed and directed it.</p>
+    </div>
+    <div>
+      <p>Icons: Material Icons, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+      <p><a href="https://github.com/mvbasov/OMNHome">Source of this site</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/omn-home.js"></script>
+</body>
+</html>

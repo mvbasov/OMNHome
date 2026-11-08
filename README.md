@@ -2,8 +2,8 @@
 
 Website for the OMN and OMN-Go projects.
 
-The site is one static page in `docs/`. It has no build step and no
-external dependency: the page, the images and a subset of the Material
+The site is static HTML in `docs/`. It has no build step and no external
+dependency: the pages, the styles, the images and a subset of the Material
 Icons font are all in that directory.
 
 ## Publish with GitHub Pages
@@ -13,23 +13,55 @@ Icons font are all in that directory.
 3. Select the branch `master` and the folder `/docs`. Save.
 
 The site is then at `https://mvbasov.github.io/OMNHome/`. The `og:url` and
-`og:image` tags in `docs/index.html` use this address. Change them if you
-use a custom domain.
+`og:image` tags of each page use this address. Change them if you use a
+custom domain.
 
 ## Contents of `docs/`
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The page. CSS and the theme script are inline. |
+| `index.html` | The home page. |
+| `pages/index.html` | The page library: ready-made OMN-Go pages to download. |
+| `pages/install.html` | How to add a page to OMN-Go on Android and on the desktop. |
+| `pages/files/` | The `.md` files of the library, and `schemes/` with color schemes as JSON. |
+| `css/omn-home.css` | The styles of each page. The palette is the OMN-Go palette. |
+| `js/omn-home.js` | The theme button and the copy buttons. |
 | `img/` | Icon, favicon, link preview image and the phone screenshots, from `fastlane/metadata` of OMN-Go. |
-| `fonts/material-icons-subset.woff2` | Material Icons (Apache License 2.0), subset to the glyphs that the page uses. |
+| `fonts/material-icons-subset.woff2` | Material Icons (Apache License 2.0), subset to the icons that the site uses. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are. |
 
-To add an icon, add its code point to the `pyftsubset` command below and
-run it on `material-icons.woff2` from the OMN-Go tree:
+## Add a page to the library
+
+1. Put the `.md` file into `docs/pages/files/`. Remove an `Imported:`
+   header line: it is a fact about your device, not about the page.
+2. Copy an `<article class="omn-card omn-item">` block in
+   `docs/pages/index.html` and change the name, the version, the text, the
+   file size and the two file links (download, and "Read the source").
+3. Add a card to the "Page library" section of `docs/index.html` if the page
+   should show on the home page.
+
+## Add a color scheme
+
+1. On the Color schemes page in OMN-Go, export the schemes, and keep only the
+   scheme that you want in the `schemes` list. Remove `"active"`.
+2. Save it as `docs/pages/files/schemes/<name>.json`.
+3. Make the preview, and paste it into a new `omn-sub` block of the Color
+   schemes card in `docs/pages/index.html`:
+
+   ```
+   python3 tools/scheme-preview.py docs/pages/files/schemes/<name>.json
+   ```
+
+## Add an icon
+
+The site writes an icon as its code point, for example `&#xe40a;` for
+`palette`. Add the name of the icon to `ICONS` in `tools/subset-icons.py`,
+and run the script with the full font from the OMN-Go tree
+(`backend/frontend/html/css/OMN-Go/fonts/material-icons.woff2`):
 
 ```
-pyftsubset material-icons.woff2 --flavor=woff2 --layout-features='' \
-  --output-file=docs/fonts/material-icons-subset.woff2 \
-  --unicodes="U+E2C1,U+E873,U+E3C9,U+E627,U+EB2F,U+E1DB,U+E892,U+EA0B,U+E80D,U+E24A,U+E51C,U+E518,U+E1AB,U+E859,U+E30A,U+F090,U+E86F,U+E889,U+EF49,U+E89E,U+E898,U+E14B"
+pip install fonttools brotli
+python3 tools/subset-icons.py material-icons.woff2
 ```
+
+The script prints the code point of each icon and writes the new subset.

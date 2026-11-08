@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page library — OMN-Go</title>
+<meta name="description" content="Ready-made pages for OMN-Go: a color scheme editor and an adapter for pages made for an older OMN-Go. Download a page and add it to your notes.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2a2d2f">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="apple-touch-icon" href="../img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OMN-Go page library">
+<meta property="og:description" content="Ready-made pages for OMN-Go. Download a page and add it to your notes.">
+<meta property="og:url" content="https://mvbasov.github.io/OMNHome/pages/">
+<meta property="og:image" content="https://mvbasov.github.io/OMNHome/img/og-image.png">
+<script>
+  /* Apply the saved theme before the first paint. */
+  try {
+    var t = localStorage.getItem('omn-home-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="../css/omn-home.css">
+</head>
+<body>
+
+<header class="omn-topbar">
+  <div class="omn-wrap">
+    <a class="omn-brand" href="../"><img src="../img/icon-192.png" alt="" width="32" height="32">OMN-Go</a>
+    <nav class="omn-nav" aria-label="Sections">
+      <a class="omn-nav-opt" href="../#features">Features</a>
+      <a class="omn-nav-on" href="./">Pages</a>
+      <a class="omn-nav-opt" href="install.html">How to add</a>
+      <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
+      <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="omn-pagehead">
+  <div class="omn-wrap">
+    <div class="omn-crumbs"><a href="../">Home</a> / Page library</div>
+    <h1>Page library</h1>
+    <p>Ready-made pages for OMN-Go. A page is one Markdown file with its own HTML and script.
+      Download a page, add it to OMN-Go, and open it like each other note.
+      <a href="install.html" style="color:#c4c7cb">How to add a page</a>.</p>
+  </div>
+</section>
+
+<section class="omn-section">
+  <div class="omn-wrap">
+
+    <div class="omn-callout omn-callout-warn">
+      <span class="omn-icon" aria-hidden="true">&#xe002;</span>
+      <div>
+        <p><strong>A page script has full rights.</strong> It can change or delete each note and each file of OMN-Go.
+          Add only a page that you trust. Each page here is plain text: read it before you add it.</p>
+        <p>The pages need <strong>OMN-Go 26.11.10 or newer</strong>. To save a file, a page needs the admin.
+          On your own device you are always the admin.</p>
+      </div>
+    </div>
+
+    <!-- ===================== Color schemes ===================== -->
+    <article class="omn-card omn-item" id="color-schemes" style="margin-top:2rem">
+      <div class="omn-item-head">
+        <span class="omn-icon" aria-hidden="true">&#xe40a;</span>
+        <h2>Color schemes</h2>
+        <span class="omn-tag" title="Page version">v26.11.11</span>
+      </div>
+      <p>An editor for color schemes. A scheme sets new values for the light palette and the dark palette of OMN-Go.
+        It can also set the main font and the code font. A color picker sets each color and shows the contrast of
+        each text and background pair. It can set the lightness to meet WCAG AA or AAA.
+        Examine the scheme in the preview, then apply it. You can export and import the schemes.</p>
+      <dl class="omn-facts">
+        <dt>File</dt><dd><code>ColorSchemes.md</code>, 124 KB</dd>
+        <dt>Writes</dt><dd>One marked block in <code>css/omn-go-custom.css</code>. Your own rules in the file stay.</dd>
+        <dt>Keeps data in</dt><dd><code>user_json/omn-go-schemes.json</code>. Git sync moves it with your notes.</dd>
+      </dl>
+      <div class="omn-actions">
+        <a class="omn-btn omn-btn-primary" href="files/ColorSchemes.md" download="ColorSchemes.md"><span class="omn-icon" aria-hidden="true">&#xf090;</span>Download</a>
+        <button class="omn-btn" type="button" data-copy="files/ColorSchemes.md"><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Copy text</button>
+        <a class="omn-btn" href="https://github.com/mvbasov/OMNHome/blob/master/docs/pages/files/ColorSchemes.md"><span class="omn-icon" aria-hidden="true">&#xe86f;</span>Read the source</a>
+        <span class="omn-copy-state" aria-live="polite"></span>
+      </div>
+
+      <div class="omn-sub" id="pastel-amber-hercules">
+        <h3>Scheme: Pastel Amber Hercules</h3>
+        <p>Warm paper colors in the light palette, amber on dark brown in the dark palette, as on an old amber monitor.
+          The scheme sets a monospace main font (14px) and Consolas for code (16px).</p>
+        <div class="omn-scheme">
+<div class="omn-mini" style="background:#dfd2bc;color:#342617;border-color:#beae94;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, &#x27;Courier New&#x27;, monospace">
+  <div class="omn-mini-head" style="background:#d5c6ad;color:#20160b;border-bottom:1px solid #a69377">Weekly plan <small>light</small></div>
+  <div class="omn-mini-body">
+    <div class="omn-mini-card" style="background:#e7dcce;border-color:#beae94">
+      <p style="color:#3b2a18;font-weight:700">Monday</p>
+      <p>Read the <span style="color:#8a4808;text-decoration:underline">manual</span>, then <span style="background:#dfb157;color:#20160b;padding:0 2px;border-radius:3px">sync</span>.</p>
+      <p style="color:#63503d">Tags: work, notes</p>
+      <div class="omn-mini-code" style="background:#d2c2a7;color:#2e1e10;font-family:Consolas, &#x27;Courier New&#x27;, monospace"><span style="color:#786552">// a note script</span>
+<span style="color:#804a08">const</span> <span style="color:#2e1e10">msg</span> = <span style="color:#7a4608">'Hello'</span>;</div>
+      <span class="omn-mini-btn" style="background:#ab6216;color:#ffffff">Save</span>
+      <div class="omn-mini-dots"><span style="background:#ab6216"></span><span style="background:#9a651f"></span><span style="background:#b54439"></span><span style="background:#965e1b"></span><span style="background:#d5c6ad"></span><span style="background:#d5c6ad"></span></div>
+    </div>
+  </div>
+</div>
+<div class="omn-mini" style="background:#1c1712;color:#e9ceaa;border-color:#4a3d2f;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, &#x27;Courier New&#x27;, monospace">
+  <div class="omn-mini-head" style="background:#2d251d;color:#f5deb8;border-bottom:1px solid #63523f">Weekly plan <small>dark</small></div>
+  <div class="omn-mini-body">
+    <div class="omn-mini-card" style="background:#241e17;border-color:#362a1e">
+      <p style="color:#f2d3a2;font-weight:700">Monday</p>
+      <p>Read the <span style="color:#e2aa62;text-decoration:underline">manual</span>, then <span style="background:#6b4d1b;color:#fdf0d5;padding:0 2px;border-radius:3px">sync</span>.</p>
+      <p style="color:#b59b7b">Tags: work, notes</p>
+      <div class="omn-mini-code" style="background:#140f0b;color:#fcecd2;font-family:Consolas, &#x27;Courier New&#x27;, monospace"><span style="color:#9b8268">// a note script</span>
+<span style="color:#ffd58a">const</span> <span style="color:#fcecd2">msg</span> = <span style="color:#ffd58a">'Hello'</span>;</div>
+      <span class="omn-mini-btn" style="background:#e59e38;color:#1c1712">Save</span>
+      <div class="omn-mini-dots"><span style="background:#e59e38"></span><span style="background:#be8333"></span><span style="background:#c75a4d"></span><span style="background:#e59e38"></span><span style="background:#2d241c"></span><span style="background:#2d251d"></span></div>
+    </div>
+  </div>
+</div>
+</div>
+        <div class="omn-actions">
+          <a class="omn-btn omn-btn-primary" href="files/schemes/pastel-amber-hercules.json" download="pastel-amber-hercules.json"><span class="omn-icon" aria-hidden="true">&#xf090;</span>Download JSON</a>
+          <button class="omn-btn" type="button" data-copy="files/schemes/pastel-amber-hercules.json"><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Copy JSON</button>
+          <span class="omn-copy-state" aria-live="polite"></span>
+        </div>
+        <h3 style="margin-top:1.4rem">Import and apply the scheme</h3>
+        <ol class="omn-steps">
+          <li>Add the <strong>Color schemes</strong> page to OMN-Go (<a href="install.html">how</a>), and open it.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe2c6;</span> <strong>Import schemes</strong> to open the import panel.</li>
+          <li><strong>On a phone:</strong> press <em>Copy JSON</em> on this page, then paste the text into the field of the panel.<br>
+            <strong>On a desktop:</strong> you can also press <span class="omn-icon" aria-hidden="true">&#xe2c8;</span> and select the downloaded file <code>pastel-amber-hercules.json</code>.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe03b;</span> <strong>Import the pasted JSON</strong>, and confirm.
+            An imported scheme replaces a scheme with the same name.</li>
+          <li>On the card <strong>Pastel Amber Hercules</strong>, press <span class="omn-icon" aria-hidden="true">&#xe5ca;</span> <strong>Apply</strong>.
+            The colors and the fonts change at once. You do not have to start OMN-Go again.</li>
+        </ol>
+        <div class="omn-callout">
+          <span class="omn-icon" aria-hidden="true">&#xe88e;</span>
+          <div>
+            <p>The OMN-Go editor does not load <code>omn-go-custom.css</code>. It keeps the default colors, thus a bad scheme cannot keep you out of it.</p>
+            <p>To go back to the OMN-Go colors, press <strong>Remove the applied scheme</strong> on the Color schemes page.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== Adapter for old pages ===================== -->
+    <article class="omn-card omn-item" id="legacy-adapter">
+      <div class="omn-item-head">
+        <span class="omn-icon" aria-hidden="true">&#xe889;</span>
+        <h2>Adapter for old pages</h2>
+        <span class="omn-tag" title="Page version">v26.11.10</span>
+      </div>
+      <p>OMN-Go 26.11.7 gives each color token, class and id of the application the prefix <code>omn-</code>.
+        For example, <code>--bg</code> is now <code>--omn-bg</code>, and the class <code>bg-yellow</code> is now
+        <code>omn-bg-yellow</code>. OMN-Go 26.11.10 also renames the panel classes, for example
+        <code>omn-config-panel</code> to <code>omn-card</code>. A page made before these versions then loses some of its colors and styles.</p>
+      <p>This page makes an adapter for the old names from the stylesheets of the installed version.
+        It puts the adapter into <code>css/omn-go-custom.css</code>, checks it, and removes it when no page needs it.</p>
+      <dl class="omn-facts">
+        <dt>File</dt><dd><code>LegacyPageAdapter.md</code>, 23 KB</dd>
+        <dt>Writes</dt><dd>One marked block in <code>css/omn-go-custom.css</code>. Your own rules in the file stay.</dd>
+        <dt>Use it when</dt><dd>You have notes that were made for OMN-Go 26.11.9 or older and use the old names.</dd>
+      </dl>
+      <div class="omn-actions">
+        <a class="omn-btn omn-btn-primary" href="files/LegacyPageAdapter.md" download="LegacyPageAdapter.md"><span class="omn-icon" aria-hidden="true">&#xf090;</span>Download</a>
+        <button class="omn-btn" type="button" data-copy="files/LegacyPageAdapter.md"><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Copy text</button>
+        <a class="omn-btn" href="https://github.com/mvbasov/OMNHome/blob/master/docs/pages/files/LegacyPageAdapter.md"><span class="omn-icon" aria-hidden="true">&#xe86f;</span>Read the source</a>
+        <span class="omn-copy-state" aria-live="polite"></span>
+      </div>
+      <div class="omn-sub">
+        <h3>Use the adapter</h3>
+        <ol class="omn-steps">
+          <li>Add the page to OMN-Go (<a href="install.html">how</a>), and open it.</li>
+          <li>Press <strong>Make</strong>, and read the adapter text.</li>
+          <li>Press <strong>Put</strong>. The page writes the adapter into <code>css/omn-go-custom.css</code> and checks it.</li>
+          <li>After each update of OMN-Go, open the page again and press <strong>Check</strong>. If the check finds a difference, press <strong>Put</strong> again.</li>
+          <li>When no page uses the old names, press <strong>Remove</strong>.</li>
+        </ol>
+        <div class="omn-callout">
+          <span class="omn-icon" aria-hidden="true">&#xe88e;</span>
+          <div>
+            <p>The adapter cannot change a script or an id. Edit these old names in your page:
+              <code>#preview</code> → <code>#omn-preview</code>, <code>#content</code> → <code>#omn-content</code>,
+              <code>#status</code> → <code>#omn-page-footer</code>, <code>quickPanel</code> → <code>omn-quick-panel</code>,
+              and <code>classList.remove('hidden')</code> on an OMN-Go element → <code>classList.remove('omn-hidden')</code>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="omn-footer">
+  <div class="omn-wrap">
+    <div>
+      <p>OMN-Go and OMN by Mikhail Basov. <a href="https://github.com/mvbasov/OMN-Go/blob/master/LICENSE">MIT License</a>.</p>
+      <p>AI coding assistants did much of the development work. A human reviewed and directed it.</p>
+    </div>
+    <div>
+      <p>Icons: Material Icons, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+      <p><a href="https://github.com/mvbasov/OMNHome">Source of this site</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/omn-home.js"></script>
+</body>
+</html>
