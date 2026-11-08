@@ -1,1 +1,480 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OMN-Go — Open Markdown Notes</title>
+<meta name="description" content="OMN-Go is a self-hosted Markdown note application for Android and the desktop. Plain .md files, offline first, optional git sync, LAN sharing and SQL scripting. No account, no cloud, no trackers.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2a2d2f">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OMN-Go — Open Markdown Notes">
+<meta property="og:description" content="Self-hosted Markdown notes for Android and the desktop. Offline first, no account, no cloud.">
+<meta property="og:url" content="https://mvbasov.github.io/OMNHome/">
+<meta property="og:image" content="https://mvbasov.github.io/OMNHome/img/og-image.png">
+<script>
+  /* Apply the saved theme before the first paint. */
+  try {
+    var t = localStorage.getItem('omn-home-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<style>
+  /* Material Icons, subset to the glyphs this page uses (Apache License 2.0). */
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('fonts/material-icons-subset.woff2') format('woff2');
+  }
+
+  /* Palette: the same values as the OMN-Go light and dark themes. */
+  :root {
+    --omn-bg: #f9f9f9;
+    --omn-bg-surface: #ffffff;
+    --omn-bg-band: #e8e8e8;
+    --omn-text: #333333;
+    --omn-text-heading: #222222;
+    --omn-text-muted: #555555;
+    --omn-border: #d6d6d6;
+    --omn-accent: #0056b3;
+    --omn-accent-hover: #004494;
+    --omn-notes-bg: #0056b3;
+    --omn-bookmarks-bg: #138496;
+    --omn-btn-text: #ffffff;
+    --omn-success: #1e7e34;
+    --omn-shadow: rgba(0, 0, 0, 0.1);
+    --omn-hero-bg: linear-gradient(160deg, #2a2d2f 0%, #1b1d1e 100%);
+    --omn-hero-text: #eef3f8;
+    --omn-hero-muted: #b8bec4;
+    --omn-green: #7ccf3a;
+  }
+  :root[data-theme="dark"] {
+    --omn-bg: #1b1d1e;
+    --omn-bg-surface: #25282a;
+    --omn-bg-band: #2a2d2f;
+    --omn-text: #d4d4d4;
+    --omn-text-heading: #e8eaed;
+    --omn-text-muted: #9aa0a6;
+    --omn-border: #45494d;
+    --omn-accent: #4d9fff;
+    --omn-accent-hover: #6cb0ff;
+    --omn-notes-bg: #1c5ea8;
+    --omn-bookmarks-bg: #14707e;
+    --omn-btn-text: #eef3f8;
+    --omn-success: #3fb950;
+    --omn-shadow: rgba(0, 0, 0, 0.4);
+    --omn-hero-bg: linear-gradient(160deg, #25282a 0%, #121314 100%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --omn-bg: #1b1d1e;
+      --omn-bg-surface: #25282a;
+      --omn-bg-band: #2a2d2f;
+      --omn-text: #d4d4d4;
+      --omn-text-heading: #e8eaed;
+      --omn-text-muted: #9aa0a6;
+      --omn-border: #45494d;
+      --omn-accent: #4d9fff;
+      --omn-accent-hover: #6cb0ff;
+      --omn-notes-bg: #1c5ea8;
+      --omn-bookmarks-bg: #14707e;
+      --omn-btn-text: #eef3f8;
+      --omn-success: #3fb950;
+      --omn-shadow: rgba(0, 0, 0, 0.4);
+      --omn-hero-bg: linear-gradient(160deg, #25282a 0%, #121314 100%);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    background: var(--omn-bg);
+    color: var(--omn-text);
+  }
+  a { color: var(--omn-accent); }
+  a:hover { color: var(--omn-accent-hover); }
+  h1, h2, h3 { color: var(--omn-text-heading); line-height: 1.25; }
+  h2 { font-size: 1.75rem; margin: 0 0 0.4rem; }
+  h3 { font-size: 1.1rem; margin: 0 0 0.3rem; }
+  code {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--omn-bg-band);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .omn-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'liga';
+  }
+  .omn-wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+  .omn-section { padding: 4rem 0; }
+  .omn-section-alt { background: var(--omn-bg-band); }
+  .omn-lead { color: var(--omn-text-muted); margin: 0 0 2rem; max-width: 46rem; }
+
+  /* Top bar */
+  .omn-topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: #2a2d2f;
+    color: #eef3f8;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+  .omn-topbar .omn-wrap { display: flex; align-items: center; gap: 1rem; height: 3.5rem; }
+  .omn-brand { display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none; font-weight: 700; font-size: 1.15rem; }
+  .omn-brand img { width: 32px; height: 32px; }
+  .omn-nav { display: flex; gap: 1.1rem; margin-left: auto; align-items: center; }
+  .omn-nav a { color: #c4c7cb; text-decoration: none; font-size: 0.95rem; }
+  .omn-nav a:hover { color: #ffffff; }
+  .omn-theme-btn {
+    background: transparent; color: #c4c7cb;
+    border: 1px solid #45494d; border-radius: 6px;
+    width: 2.2rem; height: 2.2rem; cursor: pointer; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .omn-theme-btn .omn-icon { font-size: 20px; }
+  .omn-theme-btn:hover { color: #ffffff; border-color: #6c7075; }
+  @media (max-width: 720px) { .omn-nav a.omn-nav-opt { display: none; } }
+
+  /* Hero */
+  .omn-hero { background: var(--omn-hero-bg); color: var(--omn-hero-text); padding: 4.5rem 0 4rem; }
+  .omn-hero .omn-wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3rem; align-items: center; }
+  .omn-hero-logo { width: 96px; height: 96px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45)); }
+  .omn-hero h1 { color: #ffffff; font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0.75rem 0 0; letter-spacing: -0.01em; }
+  .omn-hero-sub { color: var(--omn-green); font-weight: 700; font-size: 1.25rem; margin: 0.2rem 0 1.2rem; }
+  .omn-hero p.omn-hero-text { color: var(--omn-hero-muted); font-size: 1.15rem; margin: 0 0 2rem; max-width: 34rem; }
+  .omn-hero-shot { justify-self: center; }
+  .omn-hero-shot .omn-phone { width: 270px; max-width: 100%; }
+  @media (max-width: 820px) {
+    .omn-hero .omn-wrap { grid-template-columns: 1fr; }
+    .omn-hero-shot { display: none; }
+  }
+
+  /* Download buttons: the same look as the start buttons of the OMN-Go Welcome page */
+  .omn-get { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .omn-get-btn {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.85rem 1.3rem 0.85rem 1rem;
+    border-radius: 10px;
+    color: var(--omn-btn-text);
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    flex: 1 1 15rem; max-width: 20rem;
+    transition: transform 0.12s ease, filter 0.12s ease;
+  }
+  .omn-get-btn:hover { color: var(--omn-btn-text); transform: translateY(-2px); filter: brightness(1.1); }
+  .omn-get-btn .omn-icon { font-size: 30px; }
+  .omn-get-label { display: block; font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+  .omn-get-hint { display: block; font-size: 0.85rem; opacity: 0.85; }
+  .omn-get-fdroid { background: var(--omn-notes-bg); }
+  .omn-get-github { background: var(--omn-bookmarks-bg); }
+  .omn-noplay { margin: 1.25rem 0 0; font-size: 0.9rem; color: var(--omn-hero-muted); max-width: 34rem; }
+
+  /* Phone frames */
+  .omn-phone {
+    display: block;
+    border-radius: 22px;
+    border: 6px solid #0e0f10;
+    background: #0e0f10;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  .omn-phone img { display: block; width: 100%; height: auto; }
+
+  /* Screenshots strip */
+  .omn-shots {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0.5rem 0.25rem 1.5rem;
+  }
+  .omn-shots figure { margin: 0; flex: 0 0 210px; scroll-snap-align: start; }
+  .omn-shots figcaption { text-align: center; font-size: 0.9rem; color: var(--omn-text-muted); margin-top: 0.6rem; }
+
+  /* Feature cards */
+  .omn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
+  .omn-card {
+    background: var(--omn-bg-surface);
+    border: 1px solid var(--omn-border);
+    border-radius: 10px;
+    padding: 1.2rem 1.25rem;
+    box-shadow: 0 2px 4px var(--omn-shadow);
+  }
+  .omn-card p { margin: 0; color: var(--omn-text-muted); font-size: 0.97rem; }
+  .omn-card .omn-icon {
+    color: var(--omn-accent);
+    background: color-mix(in srgb, var(--omn-accent) 14%, transparent);
+    border-radius: 8px; padding: 6px; margin-bottom: 0.6rem;
+  }
+
+  /* Platforms */
+  .omn-platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 720px) { .omn-platforms { grid-template-columns: 1fr; } }
+  .omn-platforms .omn-card h3 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; }
+  .omn-platforms .omn-card h3 .omn-icon { margin: 0; padding: 4px; }
+  .omn-platforms ul { margin: 0.6rem 0 0; padding-left: 1.2rem; color: var(--omn-text-muted); }
+  .omn-platforms li { margin: 0.25rem 0; }
+  .omn-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    padding: 0.05rem 0.5rem; border-radius: 1rem;
+    border: 1px solid var(--omn-border); color: var(--omn-text-muted);
+    vertical-align: middle;
+  }
+
+  /* Privacy band */
+  .omn-pledge { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .omn-pledge div { display: flex; gap: 0.6rem; align-items: flex-start; }
+  .omn-pledge .omn-icon { color: var(--omn-success); }
+  .omn-pledge strong { color: var(--omn-text-heading); display: block; }
+  .omn-pledge span.omn-pledge-text { color: var(--omn-text-muted); font-size: 0.95rem; }
+  .omn-disclaimer {
+    margin-top: 2rem; padding: 1rem 1.25rem;
+    border-left: 4px solid #d39e00;
+    background: var(--omn-bg-surface);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem; color: var(--omn-text-muted);
+  }
+  .omn-disclaimer strong { color: var(--omn-text-heading); }
+
+  /* OMN classic */
+  .omn-classic { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
+  .omn-classic img { width: 72px; height: 72px; filter: grayscale(0.6); opacity: 0.85; }
+  .omn-classic p { margin: 0 0 0.8rem; }
+  .omn-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.4rem; }
+  .omn-link-btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--omn-border); border-radius: 8px;
+    background: var(--omn-bg-surface);
+    text-decoration: none; font-size: 0.95rem;
+  }
+  .omn-link-btn .omn-icon { font-size: 18px; }
+  .omn-link-btn:hover { border-color: var(--omn-accent); }
+
+  /* Footer */
+  .omn-footer { background: #2a2d2f; color: #9aa0a6; padding: 2rem 0; font-size: 0.9rem; }
+  .omn-footer a { color: #c4c7cb; }
+  .omn-footer .omn-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+  .omn-footer p { margin: 0.2rem 0; }
+</style>
+</head>
+<body>
+
+<header class="omn-topbar">
+  <div class="omn-wrap">
+    <a class="omn-brand" href="#top"><img src="img/icon-192.png" alt="" width="32" height="32">OMN-Go</a>
+    <nav class="omn-nav" aria-label="Sections">
+      <a class="omn-nav-opt" href="#screenshots">Screenshots</a>
+      <a class="omn-nav-opt" href="#features">Features</a>
+      <a class="omn-nav-opt" href="#platforms">Platforms</a>
+      <a class="omn-nav-opt" href="#omn">OMN</a>
+      <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
+      <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="omn-hero">
+  <div class="omn-wrap">
+    <div>
+      <img class="omn-hero-logo" src="img/icon-192.png" alt="OMN-Go icon" width="96" height="96">
+      <h1>OMN-Go</h1>
+      <p class="omn-hero-sub">Open Markdown Notes</p>
+      <p class="omn-hero-text">Your notes are plain Markdown files on your own device.
+        OMN-Go shows them as web pages on Android and on the desktop.
+        No account. No cloud. It works without an internet connection.</p>
+      <div class="omn-get" id="download">
+        <a class="omn-get-btn omn-get-fdroid" href="https://f-droid.org/packages/net.basov.omngo.fdroid/">
+          <span class="omn-icon" aria-hidden="true">&#xe859;</span>
+          <span><span class="omn-get-label">Get it on F-Droid</span><span class="omn-get-hint">Android 6.0 and newer</span></span>
+        </a>
+        <a class="omn-get-btn omn-get-github" href="https://github.com/mvbasov/OMN-Go/releases/latest">
+          <span class="omn-icon" aria-hidden="true">&#xf090;</span>
+          <span><span class="omn-get-label">Get it on GitHub</span><span class="omn-get-hint">Android APK, Linux, Windows</span></span>
+        </a>
+      </div>
+      <p class="omn-noplay">OMN-Go is not on Google Play, and it will not be.
+        Google's policies do not allow some optional features, such as the background web service.
+        These features stay.</p>
+    </div>
+    <div class="omn-hero-shot">
+      <span class="omn-phone"><img src="img/01-welcome.jpg" alt="The OMN-Go Welcome page on an Android phone" width="540" height="1206"></span>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section" id="screenshots">
+  <div class="omn-wrap">
+    <h2>A quick look</h2>
+    <p class="omn-lead">Write it down now. Sort it later. Keep a link. Find it again.</p>
+    <div class="omn-shots">
+      <figure><span class="omn-phone"><img src="img/01-welcome.jpg" alt="Welcome page with the Quick Notes and Bookmarks buttons" loading="lazy" width="540" height="1206"></span><figcaption>Your start page</figcaption></figure>
+      <figure><span class="omn-phone"><img src="img/03-editor.jpg" alt="The built-in Markdown editor with a note header block" loading="lazy" width="540" height="1206"></span><figcaption>Built-in editor</figcaption></figure>
+      <figure><span class="omn-phone"><img src="img/05-quicknote.jpg" alt="The Quick Note dialog" loading="lazy" width="540" height="1206"></span><figcaption>Quick note</figcaption></figure>
+      <figure><span class="omn-phone"><img src="img/06-bookmark.jpg" alt="The Ingest Bookmark dialog with URL, title and tags" loading="lazy" width="540" height="1206"></span><figcaption>Bookmark with tags</figcaption></figure>
+      <figure><span class="omn-phone"><img src="img/04-console.jpg" alt="The JavaScript console output of a note script" loading="lazy" width="540" height="1206"></span><figcaption>Script console</figcaption></figure>
+      <figure><span class="omn-phone"><img src="img/08-usermanual-light.jpg" alt="The OMN-Go User Manual in the light theme" loading="lazy" width="540" height="1206"></span><figcaption>User Manual, light theme</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section omn-section-alt" id="features">
+  <div class="omn-wrap">
+    <h2>What it does</h2>
+    <p class="omn-lead">OMN-Go is one small Go program. It runs a local web server and shows your notes in a browser view.
+      Everything it needs to render a note is inside the program.</p>
+    <div class="omn-grid">
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe873;</span><h3>Plain Markdown files</h3><p>Each note is a <code>.md</code> file with a small header block: title, date, tags. You own the files. Any tool can read them.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe2c1;</span><h3>Offline first</h3><p>KaTeX for math and highlight.js for code are in the binary. Day-to-day work needs no internet connection.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe3c9;</span><h3>Your editor, or ours</h3><p>Use Sublime Text, VS Code, Kate or any other editor. A small built-in editor is there as a fallback. Paste or drop an image to attach it.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xea0b;</span><h3>Quick capture</h3><p>A Quick Notes page and a Bookmarks collector, one press from the start page and from the Android launcher.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe80d;</span><h3>Android "Share to"</h3><p>Share a URL, text, image, JSON file, contact (vCard) or calendar (iCalendar) from another app into your notes.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe627;</span><h3>Optional git sync</h3><p>Synchronize the whole storage directory between devices over SSH. Conflicts are clear: merge by hand, or do a safe force pull or push.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xeb2f;</span><h3>Optional LAN sharing</h3><p>Off by default. When you enable it, other devices on your network can read your notes. Each write needs the admin password.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe1db;</span><h3>Embedded SQL database</h3><p>A <code>&lt;script&gt;</code> block in a note can read and write a real SQL database. Make a backup at any time and let git carry it.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe892;</span><h3>Automatic Tags page</h3><p>OMN-Go reads the <code>Tags:</code> line of each note and builds an index of all your notes by tag.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe24a;</span><h3>Math and code</h3><p>KaTeX formulas, opt-in for each page, and automatic syntax highlighting for fenced code blocks.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe86f;</span><h3>Intents and Termux</h3><p>Opt-in: a link in a note can open a settings screen, start another app or run a Termux command.</p></div>
+      <div class="omn-card"><span class="omn-icon" aria-hidden="true">&#xe51c;</span><h3>Light and dark</h3><p>A light theme, a dark theme, and a theme that follows the system. You select it on each device.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section" id="platforms">
+  <div class="omn-wrap">
+    <h2>Where it runs</h2>
+    <p class="omn-lead">The same notes and the same interface on each device. Git sync keeps a phone and a desktop in step.</p>
+    <div class="omn-platforms">
+      <div class="omn-card">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe859;</span>Android</h3>
+        <ul>
+          <li>Android 6.0 (API 23) and newer.</li>
+          <li>Needs an Android System WebView of Chromium 85 or newer. On an old device, update the WebView and Chrome first.</li>
+          <li>Notes are in <code>Android/media/net.basov.omngo/</code>. No storage permission is necessary, and a backup is easy.</li>
+          <li>Builds for <code>arm64-v8a</code>, <code>armeabi-v7a</code>, <code>x86</code> and <code>x86_64</code>.</li>
+        </ul>
+      </div>
+      <div class="omn-card">
+        <h3><span class="omn-icon" aria-hidden="true">&#xe30a;</span>Desktop</h3>
+        <ul>
+          <li>Linux <span class="omn-tag">tested</span> — one binary. Start it and your browser opens <code>http://localhost:8080</code>.</li>
+          <li>Windows <span class="omn-tag">untested</span> — the release includes an <code>.exe</code>, but nobody has tried it on real hardware yet.</li>
+          <li>No macOS build.</li>
+          <li>Build it yourself with Docker: <code>bash local/build.sh</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section omn-section-alt" id="privacy">
+  <div class="omn-wrap">
+    <h2>Your notes stay yours</h2>
+    <div class="omn-pledge">
+      <div><span class="omn-icon" aria-hidden="true">&#xe898;</span><span><strong>No account</strong><span class="omn-pledge-text">Nothing to sign up for.</span></span></div>
+      <div><span class="omn-icon" aria-hidden="true">&#xe2c1;</span><span><strong>No cloud</strong><span class="omn-pledge-text">No third party keeps your data.</span></span></div>
+      <div><span class="omn-icon" aria-hidden="true">&#xe14b;</span><span><strong>No ads, no trackers</strong><span class="omn-pledge-text">No analytics of any kind.</span></span></div>
+      <div><span class="omn-icon" aria-hidden="true">&#xe86f;</span><span><strong>Open source</strong><span class="omn-pledge-text">MIT License.</span></span></div>
+    </div>
+    <div class="omn-disclaimer">
+      <strong>A personal tool.</strong> OMN-Go is made for one person, and not as an enterprise product.
+      It has one role: the admin. A script in a note operates with full rights and can change or delete any note and any database.
+      LAN sharing sends plain HTTP with no encryption: use it only on a network that you control.
+      Keep your own backup of your notes. The author gives no warranty.
+    </div>
+  </div>
+</section>
+
+<section class="omn-section" id="omn">
+  <div class="omn-wrap">
+    <h2>OMN, the original app</h2>
+    <div class="omn-classic">
+      <img src="img/icon-192.png" alt="" width="72" height="72">
+      <div>
+        <p><strong>Open Markdown Notes (OMN)</strong> was the first version: a small Android app that kept notes in Markdown,
+          showed them as HTML and used an external editor. It had the bookmark organizer, Intents and Termux links already.</p>
+        <p>OMN is <strong>no longer updated</strong>. OMN-Go replaces it on Android and adds the desktop.
+          Both keep your notes as plain Markdown files.</p>
+        <div class="omn-links">
+          <a class="omn-link-btn" href="https://github.com/mvbasov/OMN"><span class="omn-icon" aria-hidden="true">&#xe86f;</span>Source</a>
+          <a class="omn-link-btn" href="https://f-droid.org/packages/net.basov.omn.fdroid/"><span class="omn-icon" aria-hidden="true">&#xe889;</span>OMN on F-Droid</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="omn-section omn-section-alt" id="community">
+  <div class="omn-wrap">
+    <h2>News and help</h2>
+    <p class="omn-lead">The app has a built-in User Manual. Read it first: it describes as much as possible.</p>
+    <div class="omn-links">
+      <a class="omn-link-btn" href="https://t.me/OMNNewsAndTips"><span class="omn-icon" aria-hidden="true">&#xef49;</span>Telegram: news and tips</a>
+      <a class="omn-link-btn" href="https://github.com/mvbasov/OMN-Go"><span class="omn-icon" aria-hidden="true">&#xe86f;</span>Source code</a>
+      <a class="omn-link-btn" href="https://github.com/mvbasov/OMN-Go/issues"><span class="omn-icon" aria-hidden="true">&#xe89e;</span>Report a problem</a>
+      <a class="omn-link-btn" href="https://github.com/mvbasov/OMN-Go/releases"><span class="omn-icon" aria-hidden="true">&#xf090;</span>All releases</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="omn-footer">
+  <div class="omn-wrap">
+    <div>
+      <p>OMN-Go and OMN by Mikhail Basov. <a href="https://github.com/mvbasov/OMN-Go/blob/master/LICENSE">MIT License</a>.</p>
+      <p>AI coding assistants did much of the development work. A human reviewed and directed it.</p>
+    </div>
+    <div>
+      <p>Icons: Material Icons, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+      <p><a href="https://github.com/mvbasov/OMNHome">Source of this site</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Theme button: system -> light -> dark -> system, as in the app. */
+  (function () {
+    var btn = document.getElementById('omn-theme-btn');
+    var order = ['system', 'light', 'dark'];
+    var glyph = { system: '\ue1ab', light: '\ue518', dark: '\ue51c' };
+    function current() {
+      return document.documentElement.getAttribute('data-theme') || 'system';
+    }
+    function show(mode) {
+      btn.title = 'Theme: ' + mode;
+      btn.setAttribute('aria-label', 'Theme: ' + mode + '. Press to change.');
+      btn.firstChild.textContent = glyph[mode];
+    }
+    function apply(mode) {
+      if (mode === 'system') document.documentElement.removeAttribute('data-theme');
+      else document.documentElement.setAttribute('data-theme', mode);
+      try {
+        if (mode === 'system') localStorage.removeItem('omn-home-theme');
+        else localStorage.setItem('omn-home-theme', mode);
+      } catch (e) {}
+      show(mode);
+    }
+    btn.addEventListener('click', function () {
+      apply(order[(order.indexOf(current()) + 1) % order.length]);
+    });
+    show(current());
+  })();
+</script>
+</body>
+</html>
