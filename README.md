@@ -23,9 +23,13 @@ custom domain.
 | `index.html` | The home page. |
 | `pages/index.html` | The page library: ready-made OMN-Go pages to download. |
 | `pages/install.html` | How to add a page to OMN-Go on Android and on the desktop. |
+| `doc/index.html` | The documentation index: one card for each document, with its summary. |
+| `doc/view.html` | Shows one document: `view.html?d=CODE_MAP`. |
 | `pages/files/` | The `.md` files of the library, and `schemes/` with color schemes as JSON. |
 | `css/omn-home.css` | The styles of each page. The palette is the OMN-Go palette. |
 | `js/omn-home.js` | The theme button and the copy buttons. |
+| `js/omn-docs.js` | Reads the documents from the OMN-Go repository and shows them. The list of the documents is at the top of this file. |
+| `js/marked.umd.js` | marked 18.2.0 (MIT License), the Markdown parser of the documentation pages. |
 | `img/` | Icon, favicon, link preview image and the phone screenshots, from `fastlane/metadata` of OMN-Go. |
 | `fonts/material-icons-subset.woff2` | Material Icons (Apache License 2.0), subset to the icons that the site uses. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are. |
@@ -51,6 +55,32 @@ custom domain.
    ```
    python3 tools/scheme-preview.py docs/pages/files/schemes/<name>.json
    ```
+
+## Documentation
+
+The text of each document is only in the OMN-Go repository, in `doc/`. The
+site reads it from `raw.githubusercontent.com`, branch `master`, when a
+person opens the page. Thus a change in OMN-Go shows on the site after the
+push, with no change here.
+
+The site gets these parts from the document:
+
+* The title: the first line, `# Title`.
+* The summary: an HTML comment after the title. GitHub does not show it.
+
+  ```
+  # OMN-Go code map
+
+  <!-- Summary: A map from each feature of OMN-Go to the files that make it. -->
+  ```
+
+  Without the comment, the summary is the first paragraph after the title.
+* The body: all the text after the summary. A link to a listed document
+  opens on this site. Each other relative link opens on GitHub. An image
+  comes from `raw.githubusercontent.com`.
+
+To add a document, write it in OMN-Go `doc/` with a summary comment. Then add
+its name and an icon to `DOCS` at the top of `docs/js/omn-docs.js`.
 
 ## Add an icon
 

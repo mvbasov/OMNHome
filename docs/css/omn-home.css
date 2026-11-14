@@ -348,3 +348,62 @@ code {
   .omn-facts { grid-template-columns: 1fr; gap: 0 0; }
   .omn-facts dd { margin-bottom: 0.5rem; }
 }
+
+/* ---- Documentation ---- */
+.omn-doc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
+.omn-doc-card { display: flex; flex-direction: column; }
+.omn-doc-card > .omn-icon { align-self: flex-start; }
+.omn-doc-card h3 { font-size: 1.15rem; }
+.omn-doc-card h3 a { color: var(--omn-text-heading); text-decoration: none; }
+.omn-doc-card h3 a:hover { color: var(--omn-accent); }
+.omn-doc-card .omn-doc-file { margin: 0 0 0.5rem; font-size: 0.85rem; }
+.omn-doc-card .omn-doc-summary { flex: 1; color: var(--omn-text); }
+.omn-doc-card .omn-actions { margin-top: 1rem; }
+
+.omn-pagehead p.omn-doc-head-source { margin-top: 0.8rem; font-size: 0.9rem; color: var(--omn-hero-muted); }
+.omn-doc-head-source a { color: #c4c7cb; }
+
+.omn-doc-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+@media (max-width: 960px) { .omn-doc-layout { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
+.omn-doc-toc { position: sticky; top: 4.5rem; max-height: calc(100vh - 5.5rem); overflow-y: auto; font-size: 0.9rem; }
+@media (max-width: 960px) { .omn-doc-toc { position: static; max-height: none; } }
+.omn-doc-toc details { background: var(--omn-bg-surface); border: 1px solid var(--omn-border); border-radius: 10px; padding: 0.6rem 0.8rem; }
+.omn-doc-toc summary { cursor: pointer; font-weight: 700; color: var(--omn-text-heading); }
+.omn-doc-toc ol { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+.omn-doc-toc li { margin: 0.15rem 0; line-height: 1.35; }
+.omn-doc-toc li.omn-toc-l3 { padding-left: 0.9rem; font-size: 0.85rem; }
+.omn-doc-toc a { color: var(--omn-text-muted); text-decoration: none; display: block; padding: 0.1rem 0; }
+.omn-doc-toc a:hover { color: var(--omn-accent); }
+
+.omn-doc { min-width: 0; font-size: 1rem; }
+.omn-doc > :first-child { margin-top: 0; }
+.omn-doc h2 { font-size: 1.55rem; margin: 2.4rem 0 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--omn-border); }
+.omn-doc h3 { font-size: 1.2rem; margin: 1.8rem 0 0.6rem; }
+.omn-doc h4 { font-size: 1.05rem; margin: 1.4rem 0 0.5rem; color: var(--omn-text-heading); }
+.omn-doc h5, .omn-doc h6 { font-size: 0.95rem; margin: 1.2rem 0 0.4rem; color: var(--omn-text-heading); }
+.omn-doc p, .omn-doc ul, .omn-doc ol, .omn-doc blockquote, .omn-doc pre, .omn-doc .omn-doc-table, .omn-doc details { margin: 0 0 1rem; }
+.omn-doc li { margin: 0.2rem 0; }
+.omn-doc li > p { margin: 0 0 0.4rem; }
+.omn-doc hr { border: 0; border-top: 1px solid var(--omn-border); margin: 2rem 0; }
+.omn-doc img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--omn-border); }
+.omn-doc blockquote { border-left: 4px solid var(--omn-border); padding: 0.2rem 0 0.2rem 1rem; color: var(--omn-text-muted); }
+.omn-doc pre {
+  background: var(--omn-bg-surface); border: 1px solid var(--omn-border); border-radius: 8px;
+  padding: 0.8rem 1rem; overflow-x: auto; line-height: 1.45;
+}
+.omn-doc pre code { background: none; padding: 0; font-size: 0.85rem; border-radius: 0; }
+.omn-doc code { word-break: break-word; }
+.omn-doc-table { overflow-x: auto; }
+.omn-doc table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.omn-doc th, .omn-doc td { border: 1px solid var(--omn-border); padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+.omn-doc th { background: var(--omn-bg-band); color: var(--omn-text-heading); }
+.omn-doc tr:nth-child(even) td { background: color-mix(in srgb, var(--omn-bg-band) 45%, transparent); }
+.omn-doc details summary { cursor: pointer; }
+.omn-doc-anchor { margin-left: 0.4rem; color: var(--omn-text-muted); text-decoration: none; opacity: 0; font-weight: 400; }
+.omn-doc h1:hover .omn-doc-anchor, .omn-doc h2:hover .omn-doc-anchor, .omn-doc h3:hover .omn-doc-anchor,
+.omn-doc h4:hover .omn-doc-anchor, .omn-doc h5:hover .omn-doc-anchor, .omn-doc h6:hover .omn-doc-anchor,
+.omn-doc-anchor:focus { opacity: 1; }
+.omn-doc-pager { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--omn-border); }
+.omn-doc-loading { color: var(--omn-text-muted); }
+.omn-brand { white-space: nowrap; }
+@media (max-width: 480px) { .omn-nav { gap: 0.8rem; } }

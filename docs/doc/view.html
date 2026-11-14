@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation — OMN-Go</title>
+<meta name="description" content="A document of OMN-Go, read from the OMN-Go repository on GitHub.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2a2d2f">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="apple-touch-icon" href="../img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Documentation — OMN-Go">
+<meta property="og:description" content="A document of OMN-Go, read from the OMN-Go repository on GitHub.">
+<meta property="og:url" content="https://mvbasov.github.io/OMNHome/doc/view.html">
+<meta property="og:image" content="https://mvbasov.github.io/OMNHome/img/og-image.png">
+<script>
+  /* Apply the saved theme before the first paint. */
+  try {
+    var t = localStorage.getItem('omn-home-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="../css/omn-home.css">
+</head>
+<body>
+
+<header class="omn-topbar">
+  <div class="omn-wrap">
+    <a class="omn-brand" href="../"><img src="../img/icon-192.png" alt="" width="32" height="32">OMN-Go</a>
+    <nav class="omn-nav" aria-label="Sections">
+      <a class="omn-nav-opt" href="../#features">Features</a>
+      <a href="../pages/">Pages</a>
+      <a class="omn-nav-on" href="./">Docs</a>
+      <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
+      <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="omn-pagehead">
+  <div class="omn-wrap">
+    <div class="omn-crumbs"><a href="../">Home</a> / <a href="./">Documentation</a> / <span id="omn-doc-crumb"></span></div>
+    <h1 id="omn-doc-title">Documentation</h1>
+    <p id="omn-doc-summary"></p>
+    <p class="omn-doc-head-source">Source: <a id="omn-doc-source" href="https://github.com/mvbasov/OMN-Go/tree/master/doc">doc/</a> in OMN-Go, branch <code>master</code></p>
+  </div>
+</section>
+
+<section class="omn-section">
+  <div class="omn-wrap">
+    <div class="omn-doc-layout">
+      <nav class="omn-doc-toc" id="omn-doc-toc" aria-label="Contents"></nav>
+      <div>
+        <article class="omn-doc" id="omn-doc"><p class="omn-doc-loading">Loading the document from GitHub…</p></article>
+        <nav class="omn-doc-pager" id="omn-doc-pager" aria-label="Other documents"></nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="omn-footer">
+  <div class="omn-wrap">
+    <div>
+      <p>OMN-Go and OMN by Mikhail Basov. <a href="https://github.com/mvbasov/OMN-Go/blob/master/LICENSE">MIT License</a>.</p>
+      <p>AI coding assistants did much of the development work. A human reviewed and directed it.</p>
+    </div>
+    <div>
+      <p>Icons: Material Icons, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Markdown: <a href="https://github.com/markedjs/marked">marked</a>, MIT License.</p>
+      <p><a href="https://github.com/mvbasov/OMNHome">Source of this site</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/omn-home.js"></script>
+<script src="../js/marked.umd.js"></script>
+<script src="../js/omn-docs.js"></script>
+</body>
+</html>

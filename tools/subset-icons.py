@@ -25,6 +25,7 @@ dark_mode light_mode brightness_auto android computer download code history
 campaign open_in_new lock_open block palette extension content_copy folder
 folder_open phone_android check info warning arrow_back library_books
 upload_file note_add file_upload playlist_add inbox update save
+map api fact_check spellcheck menu_book arrow_forward
 """.split()
 
 
