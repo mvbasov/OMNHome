@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page library — OMN-Go</title>
-<meta name="description" content="Ready-made pages for OMN-Go: a color scheme editor and an adapter for pages made for an older OMN-Go. Download a page and add it to your notes.">
+<meta name="description" content="Ready-made pages for OMN-Go: a color scheme editor, an adapter for pages made for an older OMN-Go, and a theme button for a page. Download a page and add it to your notes.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#2a2d2f">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
@@ -187,6 +187,50 @@
               <code>#preview</code> → <code>#omn-preview</code>, <code>#content</code> → <code>#omn-content</code>,
               <code>#status</code> → <code>#omn-page-footer</code>, <code>quickPanel</code> → <code>omn-quick-panel</code>,
               and <code>classList.remove('hidden')</code> on an OMN-Go element → <code>classList.remove('omn-hidden')</code>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== Theme button ===================== -->
+    <article class="omn-card omn-item" id="theme-button">
+      <div class="omn-item-head">
+        <span class="omn-icon" aria-hidden="true">&#xe1ab;</span>
+        <h2>Theme button</h2>
+        <span class="omn-tag" title="Page version">v26.11.3</span>
+      </div>
+      <p>A button that changes the theme of one page. Each press selects the next theme: auto, dark, light.
+        The browser keeps the choice for each page. Put the button into each page that needs it.</p>
+      <p>This page puts the CSS of the button into <code>css/omn-go-custom.css</code>, checks it, and removes it.
+        You copy the JS into <code>js/omn-go-custom.js</code>, and the page checks it.
+        You copy the button code into a page.</p>
+      <dl class="omn-facts">
+        <dt>File</dt><dd><code>ThemeButton.md</code>, 27 KB</dd>
+        <dt>Writes</dt><dd>One marked block in <code>css/omn-go-custom.css</code>. Your own rules in the file stay.</dd>
+        <dt>Reads</dt><dd><code>js/omn-go-custom.js</code>. The page does not write this file.</dd>
+        <dt>Keeps data in</dt><dd>The browser storage of each device: one theme choice for each page.</dd>
+      </dl>
+      <div class="omn-actions">
+        <a class="omn-btn omn-btn-primary" href="files/ThemeButton.md" download="ThemeButton.md"><span class="omn-icon" aria-hidden="true">&#xf090;</span>Download</a>
+        <button class="omn-btn" type="button" data-copy="files/ThemeButton.md"><span class="omn-icon" aria-hidden="true">&#xe14d;</span>Copy text</button>
+        <a class="omn-btn" href="https://github.com/mvbasov/OMNHome/blob/master/docs/pages/files/ThemeButton.md"><span class="omn-icon" aria-hidden="true">&#xe86f;</span>Read the source</a>
+        <span class="omn-copy-state" aria-live="polite"></span>
+      </div>
+      <div class="omn-sub">
+        <h3>Add the theme button</h3>
+        <ol class="omn-steps">
+          <li>Add the page to OMN-Go (<a href="install.html">how</a>), and open it.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe161;</span> <strong>Add</strong>. The page writes the CSS into <code>css/omn-go-custom.css</code> and checks it.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe14d;</span> <strong>Copy</strong> above the JS. Paste the JS at the end of <code>js/omn-go-custom.js</code>, with the begin line and the end line.</li>
+          <li>Save the file, and open the page again. Make sure that the JS state shows &ldquo;The JS is in js/omn-go-custom.js&rdquo;.</li>
+          <li>Press <span class="omn-icon" aria-hidden="true">&#xe14d;</span> <strong>Copy</strong> above the button code. Paste the code into each page that needs the button.</li>
+        </ol>
+        <div class="omn-callout">
+          <span class="omn-icon" aria-hidden="true">&#xe88e;</span>
+          <div>
+            <p>The OMN-Go editor does not load <code>omn-go-custom.js</code>. Thus an error in the JS cannot keep you out of the editor.</p>
+            <p>To remove the theme button, delete the button code from each page. Then delete the JS block from <code>js/omn-go-custom.js</code>.
+              Then press <strong>Remove</strong> on the page.</p>
           </div>
         </div>
       </div>
