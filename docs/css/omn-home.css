@@ -337,6 +337,10 @@ code {
 .omn-teaser h3 { color: var(--omn-text-heading); }
 
 .omn-pagehead + .omn-section { padding-top: 2.5rem; }
+/* Donation page */
+.omn-donation { max-width: 46rem; }
+.omn-donation p { margin: 0 0 1.25rem; }
+.omn-bitcoin-address { overflow-wrap: anywhere; word-break: break-word; }
 .omn-item-head .omn-icon, .omn-way h3 .omn-icon, .omn-platforms h3 .omn-icon {
   color: var(--omn-accent);
   background: color-mix(in srgb, var(--omn-accent) 14%, transparent);

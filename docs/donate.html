@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donate — OMN-Go</title>
+<meta name="description" content="Optional donations to thank the author of OMN-Go for work already done.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2a2d2f">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Donate — OMN-Go">
+<meta property="og:description" content="Donations are optional thanks for work already done, not payment for future work.">
+<meta property="og:url" content="https://mvbasov.github.io/OMNHome/donate.html">
+<meta property="og:image" content="https://mvbasov.github.io/OMNHome/img/og-image.png">
+<script>
+  /* Apply the saved theme before the first paint. */
+  try {
+    var t = localStorage.getItem('omn-home-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="css/omn-home.css">
+</head>
+<body>
+<header class="omn-topbar">
+  <div class="omn-wrap">
+    <a class="omn-brand" href="./"><img src="img/icon-192.png" alt="" width="32" height="32">OMN-Go</a>
+    <nav class="omn-nav" aria-label="Sections">
+      <a class="omn-nav-opt" href="./#features">Features</a>
+      <a href="pages/">Pages</a>
+      <a href="doc/">Docs</a>
+      <a class="omn-nav-on" href="donate.html" aria-current="page">Donate</a>
+      <a href="https://github.com/mvbasov/OMN-Go">GitHub</a>
+      <button class="omn-theme-btn" id="omn-theme-btn" type="button" title="Theme: system" aria-label="Theme: system"><span class="omn-icon" aria-hidden="true">&#xe1ab;</span></button>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="omn-pagehead">
+  <div class="omn-wrap">
+    <div class="omn-crumbs"><a href="./">Home</a> / Donate</div>
+    <h1>Donate</h1>
+  </div>
+</section>
+<section class="omn-section">
+  <div class="omn-wrap">
+    <div class="omn-donation">
+      <p>If you find my work useful and would like to show your appreciation, you are welcome to make a donation. However, donations are never required or expected.</p>
+      <p>A donation is simply a thank-you for work already done. It does not purchase or guarantee any future work.</p>
+      <p>Please take care of yourself and your family first. If donating would meaningfully affect your budget, please don't donate. Your well-being matters more.</p>
+      <h2>Bitcoin</h2>
+      <p>If you would like to donate using Bitcoin, you can send it to this address (Bitcoin network only):</p>
+      <p><a class="omn-bitcoin-address" href="bitcoin:bc1qecnr66zrk8uug86ndwakfmvw5f59ssslmfyvhd"><code>bc1qecnr66zrk8uug86ndwakfmvw5f59ssslmfyvhd</code></a></p>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="omn-footer">
+  <div class="omn-wrap">
+    <div>
+      <p>OMN-Go and OMN by Mikhail Basov. <a href="https://github.com/mvbasov/OMN-Go/blob/master/LICENSE">MIT License</a>.</p>
+      <p>AI coding assistants did much of the development work. A human reviewed and directed it.</p>
+    </div>
+    <div>
+      <p>Icons: Material Icons, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+      <p><a href="https://github.com/mvbasov/OMNHome">Source of this site</a></p>
+    </div>
+  </div>
+</footer>
+<script src="js/omn-home.js"></script>
+</body>
+</html>
